@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="输入中文文字，一键切换楷书、行楷、行书、草书预览，手机和电脑都适配。"
+    />
+    <title>字体生成器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Long+Cang&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&family=Zhi+Mang+Xing&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="background-wash" aria-hidden="true"></div>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="hero__eyebrow">Chinese Calligraphy Preview</p>
+        <h1>字体生成器</h1>
+        <p class="hero__lead">
+          输入中文文字后，会即时转换为楷书、行楷、行书、草书预览。默认开启楷书和行楷，再点一次就能取消选定字体。
+        </p>
+        <div class="hero__meta">
+          <span>默认显示：楷书 + 行楷</span>
+          <span>支持桌面与手机</span>
+          <span>直接打开网页即可使用</span>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="panel panel--input">
+          <div class="panel__heading">
+            <h2>输入文字</h2>
+            <p>建议输入中文内容，换行也会保留在下方预览。</p>
+          </div>
+
+          <label class="sr-only" for="text-input">输入中文文字</label>
+          <textarea
+            id="text-input"
+            rows="7"
+            spellcheck="false"
+            placeholder="例如：落笔惊风雨，挥毫写春秋。"
+          >春风十里，不如你落笔成章。</textarea>
+
+          <div class="toolbar">
+            <div class="toolbar__buttons">
+              <button id="sample-btn" type="button" class="ghost-button">
+                填入示例
+              </button>
+              <button id="clear-btn" type="button" class="ghost-button">
+                清空文字
+              </button>
+            </div>
+            <span id="char-count" class="toolbar__count">共 13 个字符</span>
+          </div>
+        </div>
+
+        <div class="panel panel--controls">
+          <div class="panel__heading">
+            <h2>字体与样式</h2>
+            <p>点击一次选中，再点一次取消。默认是楷书与行楷。</p>
+          </div>
+
+          <div class="control-group">
+            <div class="control-group__label-row">
+              <span class="control-group__label">字体选择</span>
+              <button id="reset-btn" type="button" class="text-button">
+                恢复默认
+              </button>
+            </div>
+            <div id="font-toggles" class="font-toggles" role="group" aria-label="字体选择"></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-group__label-row">
+              <label class="control-group__label" for="font-size-range">预览字号</label>
+              <span id="font-size-value" class="control-group__value">56px</span>
+            </div>
+            <input
+              id="font-size-range"
+              class="range-input"
+              type="range"
+              min="32"
+              max="92"
+              value="56"
+              step="2"
+            />
+          </div>
+
+          <div class="control-group">
+            <div class="control-group__label-row">
+              <label class="control-group__label" for="line-height-range">行距</label>
+              <span id="line-height-value" class="control-group__value">1.60</span>
+            </div>
+            <input
+              id="line-height-range"
+              class="range-input"
+              type="range"
+              min="1.2"
+              max="2"
+              value="1.6"
+              step="0.05"
+            />
+          </div>
+
+          <p class="panel__note">
+            字体优先走接近 Word 的系统楷体/行楷，设备没有时会回退到热门网页字体，保证手机和电脑都尽量能看到效果。
+          </p>
+        </div>
+      </section>
+
+      <section class="results">
+        <div class="results__heading">
+          <div>
+            <p class="results__eyebrow">Live Preview</p>
+            <h2>实时预览</h2>
+          </div>
+          <p id="selection-summary" class="results__summary">当前展示 2 种字体</p>
+        </div>
+
+        <div id="preview-grid" class="preview-grid" aria-live="polite"></div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <h3>当前没有选中任何字体</h3>
+          <p>点上方字体按钮重新勾选，或者直接恢复默认组合。</p>
+          <button id="empty-reset-btn" type="button" class="primary-button">
+            恢复默认字体
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
