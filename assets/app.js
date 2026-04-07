@@ -11,19 +11,20 @@ const fontOptions = [
   {
     id: "xingkai",
     label: "行楷",
-    shortMeta: "系统行楷",
+    shortMeta: "热门临写风",
     detail:
-      "优先使用系统内置的 Xingkai / STXingkai 一类行楷字体，不再依赖网页字体。",
+      "改成 LXGW ZhenKai GB，笔画更干净、结构更稳，更适合誊抄和网页统一展示。",
     previewClass: "font--xingkai",
-    source: "系统 Xingkai / STXingkai",
+    source: "ZeoSeven Fonts · LXGW ZhenKai GB",
   },
   {
     id: "xingshu",
     label: "行书",
-    shortMeta: "更潇洒流动",
-    detail: "以 Google Fonts 的 Zhi Mang Xing 为主，补充 Long Cang 作为回退。",
+    shortMeta: "顺手好看",
+    detail:
+      "改成云峰静龙行书，线条更顺、更接近日常誊抄时会想模仿的行书感觉。",
     previewClass: "font--xingshu",
-    source: "Google Fonts Zhi Mang Xing / Long Cang",
+    source: "ZeoSeven Fonts · 云峰静龙行书",
   },
   {
     id: "caoshu",

@@ -404,19 +404,14 @@ textarea:focus {
 
 .font--xingkai {
   font-family:
-    "Xingkai SC",
-    "Xingkai TC",
-    "STXingkai SC",
-    "STXingkai TC",
-    "STXingkai",
-    "HanziPen SC",
-    "HanziPen TC",
+    "LXGW ZhenKai GB",
     "Kaiti SC",
+    "LXGW WenKai",
     cursive;
 }
 
 .font--xingshu {
-  font-family: "Zhi Mang Xing", "Long Cang", cursive;
+  font-family: "YFJLXS", "Long Cang", cursive;
 }
 
 .font--caoshu {
