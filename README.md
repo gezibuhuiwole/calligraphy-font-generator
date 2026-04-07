@@ -13,12 +13,12 @@
 
 ## 字体方案
 
-- 楷书：优先系统楷体（接近 Word 的 Kaiti / KaiTi），缺失时回退到 `Noto Serif SC`
+- 楷书：优先使用热门开源网页字体 `LXGW WenKai / 霞鹜文楷`，再回退到系统楷体
 - 行楷：优先系统行楷，缺失时回退到 `Ma Shan Zheng`
 - 行书：`Zhi Mang Xing`，回退 `Long Cang`
 - 草书：`Liu Jian Mao Cao`
 
-网页字体来自 Google Fonts，系统字体则按设备已有字体优先显示。
+网页字体来自 `LXGW WenKai Web` 与 Google Fonts，系统字体则按设备已有字体优先显示。
 
 ## 本地使用
 

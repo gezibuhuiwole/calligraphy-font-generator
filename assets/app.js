@@ -2,11 +2,11 @@ const fontOptions = [
   {
     id: "kaishu",
     label: "楷书",
-    shortMeta: "系统楷体优先",
+    shortMeta: "文楷 + 楷体",
     detail:
-      "优先使用接近 Word 的系统楷体，如 Kaiti / KaiTi；没有时回退到 Noto Serif SC。",
+      "优先使用热门开源网页字体 LXGW WenKai / 霞鹜文楷，再回退到接近 Word 的系统楷体。",
     previewClass: "font--kaishu",
-    source: "系统楷体 + Noto Serif SC",
+    source: "LXGW WenKai + 系统楷体",
   },
   {
     id: "xingkai",
