@@ -11,11 +11,12 @@ const fontOptions = [
   {
     id: "xingkai",
     label: "行楷",
-    shortMeta: "热门临写风",
+    shortMeta: "字帖风实验版",
     detail:
-      "改成 LXGW ZhenKai GB，笔画更干净、结构更稳，更适合誊抄和网页统一展示。",
-    previewClass: "font--xingkai",
-    source: "ZeoSeven Fonts · LXGW ZhenKai GB",
+      "基于你提供的字帖样式，按规则做了收紧结构、轻微连笔、重心上提的网页渲染优化，更接近硬笔字帖行楷。",
+    previewClass: "font--xingkai-optimized",
+    source: "LXGW WenKai + 字帖风规则优化",
+    renderMode: "styled-glyphs",
   },
   {
     id: "xingshu",
@@ -96,9 +97,15 @@ function createPreviewCard(font, index) {
   card.className = "preview-card";
   card.style.setProperty("--index", String(index));
 
-  const previewText = document.createElement("p");
+  const previewText = document.createElement("div");
   previewText.className = `preview-card__text ${font.previewClass}`;
-  previewText.textContent = getDisplayText();
+
+  if (font.renderMode === "styled-glyphs") {
+    renderStyledGlyphText(previewText, getDisplayText());
+  } else {
+    previewText.textContent = getDisplayText();
+  }
+
   previewText.style.fontSize = `${state.fontSize}px`;
   previewText.style.lineHeight = String(state.lineHeight);
 
@@ -121,6 +128,71 @@ function createPreviewCard(font, index) {
 
   card.appendChild(body);
   return card;
+}
+
+function glyphSeed(codePoint, index, salt) {
+  const value =
+    (codePoint * 1103515245 + (index + 1) * 12345 + salt * 2654435761) >>> 0;
+  return (value % 1000) / 1000;
+}
+
+function mix(min, max, value) {
+  return min + (max - min) * value;
+}
+
+function isPunctuation(char) {
+  return /[，。！？；：、“”‘’（）《》〈〉,.!?;:()[\]{}]/.test(char);
+}
+
+function renderStyledGlyphText(container, text) {
+  container.innerHTML = "";
+
+  Array.from(text).forEach((char, index) => {
+    if (char === "\n") {
+      container.appendChild(document.createElement("br"));
+      return;
+    }
+
+    if (char === " ") {
+      const spacer = document.createElement("span");
+      spacer.className = "glyph-space";
+      spacer.textContent = "\u00a0";
+      container.appendChild(spacer);
+      return;
+    }
+
+    const span = document.createElement("span");
+    const codePoint = char.codePointAt(0) || 0;
+    const punctuation = isPunctuation(char);
+    const rotate = punctuation
+      ? mix(-2, 2, glyphSeed(codePoint, index, 1))
+      : mix(-4.8, 2.4, glyphSeed(codePoint, index, 1));
+    const skew = punctuation
+      ? mix(-3, 1, glyphSeed(codePoint, index, 2))
+      : mix(-9.5, -3.8, glyphSeed(codePoint, index, 2));
+    const scaleX = punctuation
+      ? mix(0.95, 1.05, glyphSeed(codePoint, index, 3))
+      : mix(0.88, 1.03, glyphSeed(codePoint, index, 3));
+    const scaleY = punctuation
+      ? mix(0.95, 1.05, glyphSeed(codePoint, index, 4))
+      : mix(0.94, 1.08, glyphSeed(codePoint, index, 4));
+    const shiftY = punctuation
+      ? mix(-0.02, 0.04, glyphSeed(codePoint, index, 5))
+      : mix(-0.11, 0.09, glyphSeed(codePoint, index, 5));
+    const shiftX = punctuation
+      ? mix(-0.01, 0.03, glyphSeed(codePoint, index, 6))
+      : mix(-0.03, 0.05, glyphSeed(codePoint, index, 6));
+
+    span.className = `glyph-unit${punctuation ? " glyph-unit--punct" : ""}`;
+    span.textContent = char;
+    span.style.setProperty("--glyph-rotate", `${rotate.toFixed(2)}deg`);
+    span.style.setProperty("--glyph-skew", `${skew.toFixed(2)}deg`);
+    span.style.setProperty("--glyph-scale-x", scaleX.toFixed(3));
+    span.style.setProperty("--glyph-scale-y", scaleY.toFixed(3));
+    span.style.setProperty("--glyph-shift-y", `${shiftY.toFixed(3)}em`);
+    span.style.setProperty("--glyph-shift-x", `${shiftX.toFixed(3)}em`);
+    container.appendChild(span);
+  });
 }
 
 function renderPreviews() {

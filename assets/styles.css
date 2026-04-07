@@ -390,6 +390,29 @@ textarea:focus {
   word-break: break-word;
 }
 
+.glyph-space {
+  display: inline-block;
+  width: 0.42em;
+}
+
+.glyph-unit {
+  display: inline-block;
+  margin-right: -0.06em;
+  transform:
+    translate(var(--glyph-shift-x, 0), var(--glyph-shift-y, 0))
+    rotate(var(--glyph-rotate, 0deg))
+    skewX(var(--glyph-skew, 0deg))
+    scaleX(var(--glyph-scale-x, 1))
+    scaleY(var(--glyph-scale-y, 1));
+  transform-origin: center 72%;
+  font-variation-settings: "wght" 530;
+}
+
+.glyph-unit--punct {
+  margin-right: 0;
+  transform-origin: center center;
+}
+
 .font--kaishu {
   font-family:
     "LXGW WenKai",
@@ -402,12 +425,16 @@ textarea:focus {
     serif;
 }
 
-.font--xingkai {
+.font--xingkai-optimized {
   font-family:
-    "LXGW ZhenKai GB",
-    "Kaiti SC",
     "LXGW WenKai",
-    cursive;
+    "Kaiti SC",
+    "STKaiti",
+    "KaiTi",
+    serif;
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  text-rendering: geometricPrecision;
 }
 
 .font--xingshu {
