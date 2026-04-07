@@ -11,11 +11,11 @@ const fontOptions = [
   {
     id: "xingkai",
     label: "行楷",
-    shortMeta: "默认已开启",
+    shortMeta: "系统行楷",
     detail:
-      "优先使用系统行楷，网页兜底使用热门字体 Ma Shan Zheng，保证更多设备可见。",
+      "优先使用系统内置的 Xingkai / STXingkai 一类行楷字体，不再依赖网页字体。",
     previewClass: "font--xingkai",
-    source: "系统行楷 + Google Fonts Ma Shan Zheng",
+    source: "系统 Xingkai / STXingkai",
   },
   {
     id: "xingshu",
@@ -28,14 +28,15 @@ const fontOptions = [
   {
     id: "caoshu",
     label: "草书",
-    shortMeta: "笔势更放逸",
-    detail: "使用热门网页草书 Liu Jian Mao Cao，风格最接近快速挥写效果。",
+    shortMeta: "系统草写风",
+    detail:
+      "优先使用系统手写风字体，例如 HanziPen SC，并以行楷类系统字体作为补充回退。",
     previewClass: "font--caoshu",
-    source: "Google Fonts Liu Jian Mao Cao",
+    source: "系统 HanziPen / Xingkai",
   },
 ];
 
-const defaultText = "春风十里，不如你落笔成章。";
+const defaultText = "";
 
 const state = {
   text: defaultText,
@@ -60,7 +61,7 @@ const resetButton = document.querySelector("#reset-btn");
 const emptyResetButton = document.querySelector("#empty-reset-btn");
 
 function getDisplayText() {
-  return state.text.trim() || "请在上方输入想预览的中文文字。";
+  return state.text.trim() || "请在上方输入任意中文文字，所选字体会实时转换。";
 }
 
 function formatCount(text) {

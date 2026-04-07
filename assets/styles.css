@@ -405,19 +405,29 @@ textarea:focus {
 .font--xingkai {
   font-family:
     "Xingkai SC",
+    "Xingkai TC",
+    "STXingkai SC",
+    "STXingkai TC",
     "STXingkai",
     "HanziPen SC",
-    "Ma Shan Zheng",
+    "HanziPen TC",
     "Kaiti SC",
     cursive;
 }
 
 .font--xingshu {
-  font-family: "Zhi Mang Xing", "Long Cang", "Ma Shan Zheng", cursive;
+  font-family: "Zhi Mang Xing", "Long Cang", cursive;
 }
 
 .font--caoshu {
-  font-family: "Liu Jian Mao Cao", "Zhi Mang Xing", cursive;
+  font-family:
+    "HanziPen SC",
+    "HanziPen TC",
+    "Xingkai SC",
+    "Xingkai TC",
+    "STXingkai",
+    "Kaiti SC",
+    cursive;
 }
 
 .empty-state {
